@@ -2,6 +2,7 @@
 
 /**
  * Plugin Name: Picoteo Store Manager
+ * Plugin URI: https://github.com/meescreative/picoteo-store-manager
  * Description: Officiële Picoteo WooCommerce Plugin.
  * Version: 1.0.0
  * Author: Jasper
