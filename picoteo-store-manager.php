@@ -14,11 +14,19 @@ if (!defined('ABSPATH')) {
 }
 
 // Definieer constante paden voor de plugin
-define('WCR_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('WCR_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('PSM_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('PSM_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+// Laad automatisch alle helper bestanden
+foreach (glob(PSM_PLUGIN_DIR . 'helpers/*.php') as $helper_file) {
+    require_once $helper_file;
+}
+
+// Laad de core functionaliteiten uit includes
+require_once PSM_PLUGIN_DIR . 'includes/class-admin-menu.php';
 
 // Activeer GitHub automatische updates via de Plugin Update Checker
-require_once WCR_PLUGIN_DIR . 'includes/plugin-update-checker/plugin-update-checker.php';
+require_once PSM_PLUGIN_DIR . 'vendor/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
     'https://github.com/meescreative/picoteo-store-manager',
     __FILE__,
