@@ -27,10 +27,10 @@ require_once PSM_PLUGIN_DIR . 'includes/class-admin-menu.php';
 
 // Activeer GitHub automatische updates via de Plugin Update Checker
 require_once PSM_PLUGIN_DIR . 'vendor/plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+$psmUpdateChecker = YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
     'https://github.com/meescreative/picoteo-store-manager',
     __FILE__,
     'picoteo-store-manager'
 );
 // Stel in dat de updates vanaf de 'main' branch moeten worden gehaald
-$myUpdateChecker->setBranch('main');
+$psmUpdateChecker->setBranch('main');
