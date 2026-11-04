@@ -1,0 +1,10 @@
+{
+  "name": "picoteo/store-manager",
+  "type": "wordpress-plugin",
+  "autoload": {
+    "psr-4": {
+      "Picoteo\\StoreManager\\": "includes/",
+      "Picoteo\\StoreManager\\Modules\\": "modules/"
+    }
+  }
+}
