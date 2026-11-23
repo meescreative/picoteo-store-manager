@@ -22,9 +22,6 @@ class Location_Manager extends Base
 
         // Luister naar verwijderen record
         add_action('wp_ajax_delete_psm_pickup_location', [$this, 'handle_delete_psm_pickup_location']);
-
-        // Registreer de shortcode
-        add_shortcode('psm_location_select', [__CLASS__, 'render_location_select_shortcode']);
     }
 
     /**
@@ -47,6 +44,7 @@ class Location_Manager extends Base
             'publicly_queryable' => true,
             'show_ui'            => true,
             'show_in_menu'       => 'picoteo-store-manager',
+            'show_in_rest'       => true,
             'supports'           => ['title'], // Titel fungeert als 'name'
             'capability_type'    => 'post',
             'hierarchical'       => false,
@@ -217,31 +215,5 @@ class Location_Manager extends Base
         } catch (\Throwable $e) {
             wp_send_json_error(['message' => 'Exception: ' . $e->getMessage()], 500);
         }
-    }
-
-    /**
-     * Genereer de HTML voor de locatie dropdown via een shortcode
-     */
-    public static function render_location_select_shortcode()
-    {
-        $locations = self::get_locations();
-
-        $html = '<div class="psm-field-group">';
-        $html .= '<label for="pickup_location_id">Afhaallocatie *</label>';
-        $html .= '<select name="pickup_location_id" id="pickup_location_id" required>';
-        $html .= '<option value="">Kies een afhaallocatie...</option>';
-
-        if (!empty($locations)) {
-            foreach ($locations as $location) {
-                $id   = esc_attr($location['id']);
-                $name = esc_html($location['name']);
-                $html .= '<option value="' . $id . '">' . $name . '</option>';
-            }
-        }
-
-        $html .= '</select>';
-        $html .= '</div>';
-
-        return $html;
     }
 }

@@ -21,13 +21,35 @@ class Form_Manager extends Base
         // Routeren op basis van de ingevoerde actie-type
         switch ($action_type) {
             case 'add_psm_pickup_location':
-                // Roep de logica van Location_Manager aan
                 Location_Manager::process_form_submission($fields);
                 break;
 
             case 'add_psm_pickup_moment':
-                // Roep de logica van PickUp_Manager aan
                 PickUp_Manager::process_form_submission($fields);
+                break;
+
+            case 'set_psm_deadline':
+                Deadline_Manager::process_form_submission($fields);
+                break;
+
+            case 'add_psm_stock_item':
+                Stock_Manager::process_form_submission($fields);
+                break;
+
+            case 'add_psm_product':
+                Product_Manager::process_form_submission($fields);
+                break;
+
+            case 'update_variation':
+                Product_Manager::update_variation($fields);
+                break;
+
+            case 'update_product_info':
+                Product_Manager::update_product_info($fields);
+                break;
+
+            case 'update_variation_info':
+                Product_Manager::update_variation_info($fields);
                 break;
 
             default:

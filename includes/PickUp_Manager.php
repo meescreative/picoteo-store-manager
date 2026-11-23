@@ -36,13 +36,29 @@ class PickUp_Manager extends Base
             ],
             'public'             => false,
             'show_ui'            => true,
-            'show_in_menu'       => 'picoteo-store-manager', // Optioneel: zet ze mooi onder de afhaallocaties in het menu!
-            'supports'           => ['title'], // Titel kan bijvoorbeeld de datum + tijd of een omschrijving zijn
+            'show_in_menu'       => 'picoteo-store-manager',
+            'show_in_rest'       => true,
+            'supports'           => ['title', 'custom-fields'],
             'capability_type'    => 'post',
             'hierarchical'       => false,
             'has_archive'        => false,
             'rewrite'            => false,
         ]);
+
+        $pickup_meta_fields = [
+            'pickup_location_id'    => 'integer',
+            'date'                  => 'string',
+            'start_hour'            => 'string',
+            'end_hour'              => 'string',
+        ];
+
+        foreach ($pickup_meta_fields as $meta_key => $meta_type) {
+            register_post_meta('psm_pickup_moment', $meta_key, [
+                'show_in_rest' => true,
+                'single'       => true,
+                'type'         => $meta_type,
+            ]);
+        }
     }
 
     /**
