@@ -46,7 +46,9 @@ class Plugin
         if (class_exists(__NAMESPACE__ . '\\Product_Manager')) {
             new Product_Manager();
         }
-
+        if (class_exists(__NAMESPACE__ . '\\Mix_Manager')) {
+            new Mix_Manager();
+        }
         if (class_exists(__NAMESPACE__ . '\\Form_Manager')) {
             new Form_Manager();
         }
